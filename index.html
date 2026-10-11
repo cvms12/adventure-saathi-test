@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adventure Saathi — Travel &amp; Treks Across India</title>
+<meta name="description" content="Adventure Saathi — guided treks and travel across the Himalayas and beyond. Your companion on the trail.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Work+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16241F;
+    --pine:#1F3D30;
+    --pine-light:#2C5340;
+    --paper:#EEF1EA;
+    --paper-dim:#E4E8DD;
+    --card:#FCFCF9;
+    --marigold:#E8A23B;
+    --marigold-deep:#CE8226;
+    --slate:#55635F;
+    --slate-light:#8A968E;
+    --white:#FFFFFF;
+    --line:rgba(22,36,31,0.12);
+    --shadow: 0 20px 50px -25px rgba(22,36,31,0.35);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer;}
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--marigold-deep);
+    font-weight:600;
+  }
+
+  .wrap{
+    max-width:1220px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  :focus-visible{
+    outline:3px solid var(--marigold);
+    outline-offset:3px;
+  }
+
+  /* ---------- Topo divider signature ---------- */
+  .topo-divider{
+    width:100%;
+    height:64px;
+    display:block;
+  }
+  .topo-divider path{
+    fill:none;
+    stroke:var(--line);
+    stroke-width:1.5;
+  }
+  .topo-divider .peak-marked{
+    stroke:var(--marigold);
+    stroke-width:2;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(238,241,234,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 32px;
+    max-width:1220px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:600;
+    color:var(--pine);
+  }
+  .logo svg{width:30px; height:30px; flex-shrink:0;}
+  .logo .sub{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.6rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--slate);
+    display:block;
+    font-weight:500;
+    margin-top:1px;
+  }
+  nav.primary-nav{
+    display:flex;
+    align-items:center;
+    gap:34px;
+  }
+  nav.primary-nav a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--ink);
+    position:relative;
+    padding:4px 0;
+  }
+  nav.primary-nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%;
+    height:2px;
+    background:var(--marigold);
+    transition:width 0.25s ease;
+  }
+  nav.primary-nav a:hover::after{width:100%;}
+
+  .header-actions{display:flex; align-items:center; gap:14px;}
+
+  .whatsapp-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    background:var(--pine);
+    color:var(--white);
+    padding:10px 18px;
+    border-radius:999px;
+    font-size:0.88rem;
+    font-weight:600;
+    box-shadow:var(--shadow);
+    transition:transform 0.2s ease, background 0.2s ease;
+    white-space:nowrap;
+  }
+  .whatsapp-btn:hover{background:var(--pine-light); transform:translateY(-2px);}
+  .whatsapp-btn svg{width:18px; height:18px; flex-shrink:0;}
+
+  .menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:var(--ink);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:96px 0 0;
+    background:linear-gradient(180deg, var(--paper) 0%, var(--paper) 60%, var(--paper-dim) 100%);
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero-copy .eyebrow{margin-bottom:18px; display:block;}
+  .hero-copy h1{
+    font-size:clamp(2.6rem, 5vw, 4.4rem);
+    line-height:1.03;
+    margin-bottom:24px;
+  }
+  .hero-copy h1 em{
+    font-style:italic;
+    color:var(--pine);
+  }
+  .hero-copy p.lede{
+    font-size:1.12rem;
+    color:var(--slate);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:48px;}
+  .btn-primary, .btn-secondary{
+    padding:15px 28px;
+    border-radius:6px;
+    font-size:0.95rem;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:all 0.2s ease;
+  }
+  .btn-primary{
+    background:var(--marigold);
+    color:var(--ink);
+  }
+  .btn-primary:hover{background:var(--marigold-deep); transform:translateY(-2px);}
+  .btn-secondary{
+    background:transparent;
+    color:var(--ink);
+    border:1.5px solid var(--ink);
+  }
+  .btn-secondary:hover{background:var(--ink); color:var(--white);}
+
+  .hero-stats{
+    display:flex;
+    gap:36px;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .hero-stats .stat-num{
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--pine);
+    display:block;
+  }
+  .hero-stats .stat-label{
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--slate-light);
+  }
+
+  /* Hero visual: layered topo mountains, signature element */
+  .hero-visual{
+    position:relative;
+    height:520px;
+  }
+  .hero-visual svg{width:100%; height:100%;}
+  .hero-visual .layer-back{opacity:0.35;}
+  .hero-visual .layer-mid{opacity:0.55;}
+  .hero-visual .contour{
+    fill:none;
+    stroke:var(--pine);
+    stroke-width:1.3;
+  }
+  .hero-visual .contour.accent{
+    stroke:var(--marigold);
+    stroke-width:2;
+  }
+  .route-dot{
+    fill:var(--marigold);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; r:5;}
+    50%{opacity:0.5; r:8;}
+  }
+  .route-pin-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    fill:var(--ink);
+    font-weight:600;
+  }
+
+  /* ---------- Sections shared ---------- */
+  section{padding:104px 0;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:32px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:clamp(2rem, 3.4vw, 2.9rem);
+    max-width:600px;
+    margin-top:10px;
+  }
+  .section-head p{
+    max-width:360px;
+    color:var(--slate);
+    font-size:0.98rem;
+  }
+
+  /* ---------- About ---------- */
+  .about{background:var(--paper);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-mark{
+    aspect-ratio:4/5;
+    border-radius:8px;
+    background:linear-gradient(155deg, var(--pine) 0%, #143327 55%, var(--ink) 100%);
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .about-mark svg{position:absolute; inset:0; width:100%; height:100%; opacity:0.5;}
+  .about-mark .caption{
+    position:absolute;
+    left:20px; bottom:20px;
+    color:var(--white);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.85;
+  }
+  .about-copy p{
+    color:var(--slate);
+    font-size:1.05rem;
+    margin-bottom:20px;
+    max-width:560px;
+  }
+  .about-copy p.lede-big{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    color:var(--ink);
+    font-weight:400;
+    line-height:1.4;
+  }
+  .about-pillars{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    margin-top:40px;
+  }
+  .pillar{border-top:2px solid var(--ink); padding-top:14px;}
+  .pillar .num{font-family:'JetBrains Mono', monospace; font-size:0.75rem; color:var(--marigold-deep); font-weight:600;}
+  .pillar h4{font-size:1.05rem; margin:8px 0 6px;}
+  .pillar p{font-size:0.88rem; color:var(--slate); margin:0;}
+
+  /* ---------- Treks grid ---------- */
+  .treks{background:var(--paper-dim);}
+  .trek-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .trek-card{
+    background:var(--card);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:transform 0.25s ease;
+  }
+  .trek-card:hover{transform:translateY(-6px);}
+  .trek-photo{
+    aspect-ratio:4/3;
+    position:relative;
+    overflow:hidden;
+  }
+  .trek-photo svg{width:100%; height:100%;}
+  .trek-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform 0.4s ease;
+  }
+  .trek-card:hover .trek-photo img{transform:scale(1.05);}
+  .trek-photo .credit{
+    position:absolute;
+    bottom:10px;
+    right:12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.6rem;
+    color:rgba(255,255,255,0.75);
+    text-shadow:0 1px 3px rgba(0,0,0,0.6);
+    letter-spacing:0.02em;
+  }
+  .trek-photo .tag{
+    position:absolute;
+    top:14px; left:14px;
+    background:rgba(22,36,31,0.85);
+    color:var(--white);
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:5px 10px;
+    border-radius:999px;
+  }
+  .trek-body{padding:22px 22px 26px;}
+  .trek-body h3{font-size:1.28rem; margin-bottom:6px;}
+  .trek-region{font-size:0.85rem; color:var(--slate-light); margin-bottom:14px;}
+  .trek-stats{
+    display:flex;
+    gap:18px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.76rem;
+    color:var(--slate);
+    border-top:1px solid var(--line);
+    padding-top:14px;
+    margin-top:6px;
+  }
+  .trek-stats span{display:block;}
+  .trek-stats b{display:block; color:var(--ink); font-size:0.88rem;}
+  .trek-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:16px;
+  }
+  .trek-price{font-family:'JetBrains Mono', monospace; font-weight:600; font-size:0.95rem;}
+  .trek-price span{color:var(--slate-light); font-weight:400; font-size:0.72rem; display:block;}
+  .trek-link{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--pine);
+    border-bottom:1.5px solid var(--marigold);
+    padding-bottom:2px;
+  }
+
+  .view-all{
+    display:flex;
+    justify-content:center;
+    margin-top:52px;
+  }
+
+  /* ---------- Elevation profile signature divider ---------- */
+  .elevation-section{
+    background:var(--ink);
+    padding:80px 0;
+    overflow:hidden;
+  }
+  .elevation-head{color:var(--white); margin-bottom:8px;}
+  .elevation-head .eyebrow{color:var(--marigold);}
+  .elevation-head h2{color:var(--white); font-size:1.6rem; margin-top:8px; max-width:520px;}
+  .elevation-svg-wrap{margin-top:48px;}
+  .elevation-svg-wrap svg{width:100%; height:auto; display:block;}
+  .elev-line{fill:none; stroke:var(--marigold); stroke-width:2.5;}
+  .elev-fill{fill:url(#elevGrad);}
+  .elev-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    fill:#B9C2BC;
+  }
+  .elev-label.peak{fill:var(--white); font-weight:600;}
+  .elev-dot{fill:var(--marigold);}
+
+  /* ---------- Destinations (travel side) ---------- */
+  .destinations{background:var(--paper);}
+  .dest-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+  }
+  .dest-card{
+    aspect-ratio:3/4;
+    border-radius:10px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+  }
+  .dest-card svg{position:absolute; inset:0; width:100%; height:100%;}
+  .dest-card .dest-info{
+    position:relative;
+    z-index:2;
+    padding:20px;
+    color:var(--white);
+  }
+  .dest-card .dest-info .eyebrow{color:var(--marigold); margin-bottom:6px; display:block;}
+  .dest-card .dest-info h4{color:var(--white); font-size:1.15rem;}
+  .dest-card::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(22,36,31,0) 30%, rgba(15,24,20,0.88) 100%);
+    z-index:1;
+  }
+
+  /* ---------- Why Saathi ---------- */
+  .why{background:var(--paper-dim);}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:28px;
+  }
+  .why-card{
+    background:var(--card);
+    padding:32px 26px;
+    border-radius:10px;
+    border:1px solid var(--line);
+  }
+  .why-card svg{width:34px; height:34px; color:var(--pine); margin-bottom:20px;}
+  .why-card h4{font-size:1.08rem; margin-bottom:10px;}
+  .why-card p{font-size:0.9rem; color:var(--slate);}
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{background:var(--pine); color:var(--white);}
+  .testimonials .section-head h2, .testimonials .eyebrow{color:var(--white);}
+  .testimonials .eyebrow{color:var(--marigold);}
+  .testimonials .section-head p{color:#C9D3CC;}
+  .test-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .test-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px;
+    padding:30px;
+  }
+  .test-card p.quote{
+    font-family:'Fraunces', serif;
+    font-size:1.15rem;
+    font-weight:400;
+    line-height:1.5;
+    margin-bottom:24px;
+  }
+  .test-who{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.78rem;
+  }
+  .test-who .avatar{
+    width:38px; height:38px;
+    border-radius:50%;
+    background:var(--marigold);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--ink);
+    font-weight:700;
+    font-family:'Fraunces', serif;
+  }
+  .test-who .name{color:var(--white); font-weight:600; display:block;}
+  .test-who .trip{color:#A9B6AF;}
+
+  /* ---------- Instagram strip ---------- */
+  .insta{background:var(--paper); text-align:center;}
+  .insta .section-head{justify-content:center; text-align:center; flex-direction:column; align-items:center;}
+  .insta-handle{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'JetBrains Mono', monospace;
+    font-weight:600;
+    font-size:1rem;
+    color:var(--pine);
+    margin-top:14px;
+    padding:10px 20px;
+    border:1.5px solid var(--pine);
+    border-radius:999px;
+    transition:all 0.2s ease;
+  }
+  .insta-handle:hover{background:var(--pine); color:var(--white);}
+  .insta-handle svg{width:20px; height:20px;}
+  .insta-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:14px;
+    margin-top:48px;
+  }
+  .insta-tile{
+    aspect-ratio:1/1;
+    border-radius:6px;
+    overflow:hidden;
+    position:relative;
+  }
+  .insta-tile svg{width:100%; height:100%;}
+  .insta-tile:hover .insta-overlay{opacity:1;}
+  .insta-overlay{
+    position:absolute; inset:0;
+    background:rgba(22,36,31,0.55);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0;
+    transition:opacity 0.2s ease;
+  }
+  .insta-overlay svg{width:24px; height:24px; color:var(--white);}
+
+  /* ---------- Contact ---------- */
+  .contact{background:var(--paper-dim);}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+  }
+  .contact-info h2{font-size:2.2rem; margin-bottom:18px;}
+  .contact-info > p{color:var(--slate); max-width:420px; margin-bottom:36px;}
+  .contact-line{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .contact-line:last-of-type{border-bottom:1px solid var(--line);}
+  .contact-line svg{width:20px; height:20px; color:var(--pine); flex-shrink:0;}
+  .contact-line .label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.65rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--slate-light);
+    display:block;
+    margin-bottom:2px;
+  }
+  .contact-line .value{font-weight:600; font-size:1rem;}
+
+  .contact-form{
+    background:var(--card);
+    border-radius:12px;
+    padding:40px;
+    box-shadow:var(--shadow);
+  }
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px;}
+  .field{display:flex; flex-direction:column; gap:8px; margin-bottom:18px;}
+  .field label{font-size:0.78rem; font-weight:600; color:var(--slate);}
+  .field input, .field select, .field textarea{
+    border:1.5px solid var(--line);
+    background:var(--paper);
+    border-radius:6px;
+    padding:12px 14px;
+    font-family:'Work Sans', sans-serif;
+    font-size:0.95rem;
+    color:var(--ink);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    border-color:var(--pine);
+    outline:none;
+  }
+  .field textarea{resize:vertical; min-height:100px;}
+  .submit-btn{
+    width:100%;
+    background:var(--ink);
+    color:var(--white);
+    padding:16px;
+    border:none;
+    border-radius:6px;
+    font-weight:600;
+    font-size:0.98rem;
+    margin-top:8px;
+    transition:background 0.2s ease;
+  }
+  .submit-btn:hover{background:var(--pine);}
+  .form-note{font-size:0.78rem; color:var(--slate-light); margin-top:14px; text-align:center;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:#C9D3CC; padding:72px 0 32px;}
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 0.8fr 0.8fr 1fr;
+    gap:40px;
+    padding-bottom:48px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .footer-brand{display:flex; align-items:center; gap:10px; color:var(--white); font-family:'Fraunces', serif; font-size:1.25rem; font-weight:600; margin-bottom:16px;}
+  .footer-brand svg{width:26px; height:26px;}
+  .footer-col h5{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--marigold);
+    margin-bottom:18px;
+  }
+  .footer-col ul li{margin-bottom:12px; font-size:0.9rem;}
+  .footer-col ul li a:hover{color:var(--white);}
+  .footer-social{display:flex; gap:12px; margin-top:6px;}
+  .footer-social a{
+    width:38px; height:38px;
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transition:all 0.2s ease;
+  }
+  .footer-social a:hover{background:var(--marigold); border-color:var(--marigold); color:var(--ink);}
+  .footer-social svg{width:17px; height:17px;}
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:28px;
+    font-size:0.8rem;
+    color:#7C877F;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- Floating WhatsApp (mobile-friendly, always visible) ---------- */
+  .float-whatsapp{
+    position:fixed;
+    bottom:26px;
+    right:26px;
+    width:58px; height:58px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 28px -8px rgba(0,0,0,0.45);
+    z-index:200;
+    transition:transform 0.2s ease;
+  }
+  .float-whatsapp:hover{transform:scale(1.08);}
+  .float-whatsapp svg{width:28px; height:28px; color:var(--white);}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){
+    nav.primary-nav{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{height:340px;}
+    .about-grid{grid-template-columns:1fr;}
+    .trek-grid{grid-template-columns:repeat(2,1fr);}
+    .dest-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:repeat(2,1fr);}
+    .test-grid{grid-template-columns:1fr;}
+    .insta-grid{grid-template-columns:repeat(3,1fr);}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .wrap{padding:0 20px;}
+    .nav-row{padding:16px 20px;}
+    section{padding:72px 0;}
+    .trek-grid{grid-template-columns:1fr;}
+    .dest-grid{grid-template-columns:1fr 1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .insta-grid{grid-template-columns:repeat(3,1fr);}
+    .form-row{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .whatsapp-btn span{display:none;}
+    .whatsapp-btn{padding:10px; width:42px; height:42px; justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="nav-row">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 24L12 10L17 18L21 12L28 24H4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="23" cy="7" r="2.4" fill="currentColor"/>
+      </svg>
+      <span>Adventure Saathi<span class="sub">Travel &amp; Treks</span></span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#treks">Treks</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Stories</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="whatsapp-btn" href="https://wa.me/918808970991?text=Hi%20Saathi%20Adventures%2C%20I%27d%20like%20to%20know%20more!" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4C7.24 4 3.33 7.9 3.33 12.72c0 1.55.41 3.06 1.19 4.39L3.25 21.5l4.5-1.18a9.4 9.4 0 0 0 4.3 1.09h.01c4.81 0 8.72-3.9 8.72-8.72 0-2.33-.91-4.52-2.58-6.17zm-5.55 13.4h-.01a7.3 7.3 0 0 1-3.73-1.02l-.27-.16-2.67.7.71-2.6-.17-.27a7.24 7.24 0 0 1-1.12-3.87c0-4 3.26-7.26 7.27-7.26a7.23 7.23 0 0 1 7.24 7.27c0 4-3.25 7.25-7.25 7.25zm3.98-5.43c-.22-.11-1.29-.64-1.49-.71-.2-.07-.34-.11-.49.11-.14.22-.56.71-.69.85-.13.15-.25.16-.47.05-.22-.11-.92-.34-1.75-1.08-.65-.58-1.08-1.29-1.21-1.51-.13-.22-.01-.34.1-.45.1-.1.22-.25.33-.38.11-.13.15-.22.22-.36.07-.15.04-.28-.02-.39-.06-.11-.49-1.19-.68-1.63-.18-.43-.36-.37-.49-.38-.13-.01-.28-.01-.42-.01-.15 0-.39.06-.6.28-.2.22-.78.77-.78 1.86 0 1.1.8 2.16.91 2.31.11.15 1.57 2.4 3.81 3.36.53.23.95.37 1.27.47.53.17 1.02.15 1.4.09.43-.06 1.29-.53 1.47-1.03.18-.51.18-.94.13-1.03-.05-.09-.2-.15-.42-.26z"/></svg>
+        <span>WhatsApp</span>
+      </a>
+      <button class="menu-toggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Guided treks · Road trips · Wild places, India &amp; beyond</span>
+      <h1>Not just a guide.<br><em>A saathi</em> on the trail.</h1>
+      <p class="lede">Saathi means companion — and that's the whole idea. We plan, permit, guide and carry the worry, so you can just walk, watch the ridgeline change colour, and arrive somewhere that stays with you.</p>
+      <div class="hero-ctas">
+        <a href="#treks" class="btn-primary">Explore treks</a>
+        <a href="#contact" class="btn-secondary">Plan a trip</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-num">40+</span>
+          <span class="stat-label">Routes led</span>
+        </div>
+        <div>
+          <span class="stat-num">18</span>
+          <span class="stat-label">States &amp; regions</span>
+        </div>
+        <div>
+          <span class="stat-num">1:6</span>
+          <span class="stat-label">Guide to trekker ratio</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+        <g class="layer-back">
+          <path class="contour" d="M0 380 Q60 340 120 370 T260 350 T400 380 T520 360"/>
+          <path class="contour" d="M0 410 Q70 380 130 400 T270 385 T410 405 T520 390"/>
+        </g>
+        <g class="layer-mid">
+          <path class="contour" d="M0 300 L90 160 L150 250 L210 120 L260 240 L330 90 L390 230 L460 150 L520 260"/>
+          <path class="contour" d="M0 330 L90 190 L150 280 L210 150 L260 270 L330 120 L390 260 L460 180 L520 290"/>
+        </g>
+        <path class="contour accent" d="M20 300 L100 175 L160 260 L215 135 L270 250 L335 105 L395 240 L465 165 L500 220"/>
+        <circle class="route-dot" cx="215" cy="135" r="5"/>
+        <text class="route-pin-label" x="228" y="128">Kedarkantha · 12,500ft</text>
+        <circle class="route-dot" cx="465" cy="165" r="5" style="animation-delay:0.8s"/>
+        <text class="route-pin-label" x="410" y="150">Hampta Pass</text>
+        <circle class="route-dot" cx="100" cy="175" r="5" style="animation-delay:1.5s"/>
+        <text class="route-pin-label" x="10" y="165">Roopkund</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<svg class="topo-divider" viewBox="0 0 1220 64" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 40 Q100 10 200 38 T400 30 T600 45 T800 25 T1000 40 T1220 32"/>
+  <path class="peak-marked" d="M0 50 Q100 25 200 48 T400 42 T600 55 T800 38 T1000 50 T1220 44"/>
+</svg>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-mark">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <path d="M-20 380 L60 200 L120 300 L190 140 L250 280 L330 100 L420 260" stroke="#E8A23B" stroke-width="3" fill="none" opacity="0.7"/>
+        <path d="M-20 420 L60 260 L120 340 L190 200 L250 320 L330 160 L420 300" stroke="#FFFFFF" stroke-width="1.5" fill="none" opacity="0.35"/>
+        <path d="M-20 340 L60 150 L120 250 L190 90 L250 230 L330 60 L420 210" stroke="#FFFFFF" stroke-width="1" fill="none" opacity="0.2"/>
+      </svg>
+      <span class="caption">Est. on a ridge, somewhere in Himachal</span>
+    </div>
+    <div class="about-copy">
+      <span class="eyebrow">Who we are</span>
+      <p class="lede-big">Adventure Saathi started with a simple complaint: most trips felt like they were run for a spreadsheet, not for the people on the trail.</p>
+      <p>We're a small team of guides, drivers, cooks and route-planners who grew up in the mountains we now take you into. Some of us started as porters, some as trekkers who never really came back down. What we share is a refusal to hand you a laminated itinerary and call it a trip.</p>
+      <p>Every route we run — trek or road journey — is scouted by someone on our team first. We keep groups small, build in slack for weather and altitude, and stay close by phone and WhatsApp from the day you book to the day you're back home telling everyone about it.</p>
+      <div class="about-pillars">
+        <div class="pillar">
+          <span class="num">01</span>
+          <h4>Local-first</h4>
+          <p>Guides, cooks and drivers drawn from the regions we operate in.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">02</span>
+          <h4>Small groups</h4>
+          <p>We cap group size so no one's a number and every guide knows your name.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">03</span>
+          <h4>Real safety</h4>
+          <p>Trained guides, proper permits, oxygen and comms on every high-altitude route.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TREKS ============ -->
+<section class="treks" id="treks">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Signature treks</span>
+        <h2>Trails we know like the back of our hand</h2>
+      </div>
+      <p>From easy weekend walks to demanding high-altitude crossings — sorted roughly by how hard your calves will hate you.</p>
+    </div>
+
+    <div class="trek-grid">
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kedarkantha.jpg" alt="Snow-covered summit ridge on the Kedarkantha trek" loading="lazy">
+          <span class="credit">Wikimedia Commons</span>
+          <span class="tag">Moderate</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="kedarkantha.html">Kedarkantha Trek</a></h3>
+          <div class="trek-region">Uttarakhand · Govind Wildlife Sanctuary</div>
+          <div class="trek-stats">
+            <span><b>5 days</b>Duration</span>
+            <span><b>12,500 ft</b>Max altitude</span>
+            <span><b>20 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">₹9,499<span>per person, all-inclusive</span></div>
+            <a href="kedarkantha.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hampta%20Pass%20Himachal%20Pradesh%20India.jpg" alt="Mountain landscape along the Hampta Pass crossing in Himachal Pradesh" loading="lazy">
+          <span class="credit">Wikimedia Commons</span>
+          <span class="tag">Challenging</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="hampta-pass.html">Hampta Pass Crossing</a></h3>
+          <div class="trek-region">Himachal Pradesh · Kullu to Lahaul</div>
+          <div class="trek-stats">
+            <span><b>5 days</b>Duration</span>
+            <span><b>14,000 ft</b>Max altitude</span>
+            <span><b>26 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">₹11,999<span>per person, all-inclusive</span></div>
+            <a href="hampta-pass.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Roopkund%20Lake.jpg" alt="The high-altitude glacial lake at Roopkund, Uttarakhand" loading="lazy">
+          <span class="credit">Wikimedia Commons</span>
+          <span class="tag">Extreme</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="roopkund.html">Roopkund Mystery Lake</a></h3>
+          <div class="trek-region">Uttarakhand · Chamoli district</div>
+          <div class="trek-stats">
+            <span><b>8 days</b>Duration</span>
+            <span><b>16,500 ft</b>Max altitude</span>
+            <span><b>53 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">₹15,499<span>per person, all-inclusive</span></div>
+            <a href="roopkund.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Glimpse%20of%20Nanda%20Devi%20amidst%20the%20clouds%20from%20Valley%20of%20Flowers.jpg" alt="Alpine meadow in the Valley of Flowers with Nanda Devi in the distance" loading="lazy">
+          <span class="credit">Wikimedia Commons</span>
+          <span class="tag">Easy</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="valley-of-flowers.html">Valley of Flowers</a></h3>
+          <div class="trek-region">Uttarakhand · UNESCO World Heritage Site</div>
+          <div class="trek-stats">
+            <span><b>6 days</b>Duration</span>
+            <span><b>11,500 ft</b>Max altitude</span>
+            <span><b>38 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">₹10,999<span>per person, all-inclusive</span></div>
+            <a href="valley-of-flowers.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Chadar-Zanskar.jpg" alt="Trekkers walking on the frozen Zanskar river during the Chadar trek" loading="lazy">
+          <span class="credit">Wikimedia Commons</span>
+          <span class="tag">Winter Special</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="chadar.html">Chadar — Frozen River Trek</a></h3>
+          <div class="trek-region">Ladakh · Zanskar Gorge</div>
+          <div class="trek-stats">
+            <span><b>9 days</b>Duration</span>
+            <span><b>11,123 ft</b>Max altitude</span>
+            <span><b>62 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">₹19,999<span>per person, all-inclusive</span></div>
+            <a href="chadar.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/A%20lake%20near%20Kang%20Yatse%2C%20Markha%20Valley%20trek%2C%20Ladakh%2C%20India%20(2006).jpg" alt="A lake near Kang Yatse peak on the Markha Valley trek, Ladakh" loading="lazy">
+          <span class="credit">Wikimedia Commons</span>
+          <span class="tag">Moderate</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="markha-valley.html">Markha Valley Trek</a></h3>
+          <div class="trek-region">Ladakh · Hemis National Park</div>
+          <div class="trek-stats">
+            <span><b>7 days</b>Duration</span>
+            <span><b>17,060 ft</b>Max altitude</span>
+            <span><b>64 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">₹16,499<span>per person, all-inclusive</span></div>
+            <a href="markha-valley.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <a href="brahmatal.html"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='800' height='600' fill='%232C5340'/%3E%3Cpath d='M0 430 L130 290 L240 380 L360 250 L470 360 L590 280 L800 400 V600 H0 Z' fill='%2316241F' opacity='0.72'/%3E%3Cpath d='M0 500 L110 420 L230 470 L350 400 L480 470 L620 410 L800 480 V600 H0 Z' fill='%2316241F' opacity='0.9'/%3E%3Ccircle cx='640' cy='120' r='34' fill='%23E8A23B' opacity='0.85'/%3E%3C/svg%3E" alt="Brahmatal trek — photo coming soon" loading="lazy"></a>
+          <span class="tag">Moderate</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="brahmatal.html">Brahmatal Trek</a></h3>
+          <div class="trek-region">Uttarakhand</div>
+          <div class="trek-stats">
+            <span><b>5 days</b>Duration</span><span><b>12,250 ft</b>Max altitude</span><span><b>Lohajung</b>Base village</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">Price on request<span>WhatsApp us for current pricing</span></div>
+            <a href="brahmatal.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <a href="sar-pass.html"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='800' height='600' fill='%231F3D30'/%3E%3Cpath d='M0 430 L130 290 L240 380 L360 250 L470 360 L590 280 L800 400 V600 H0 Z' fill='%230F1B16' opacity='0.72'/%3E%3Cpath d='M0 500 L110 420 L230 470 L350 400 L480 470 L620 410 L800 480 V600 H0 Z' fill='%230F1B16' opacity='0.9'/%3E%3Ccircle cx='640' cy='120' r='34' fill='%23E8A23B' opacity='0.85'/%3E%3C/svg%3E" alt="Sar Pass trek — photo coming soon" loading="lazy"></a>
+          <span class="tag">Moderate</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="sar-pass.html">Sar Pass Trek</a></h3>
+          <div class="trek-region">Himachal Pradesh · Parvati Valley</div>
+          <div class="trek-stats">
+            <span><b>~5 days</b>Duration</span><span><b>~13,800 ft</b>Max altitude</span><span><b>Kasol</b>Starting point</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">Price on request<span>WhatsApp us for current pricing</span></div>
+            <a href="sar-pass.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="trek-card">
+        <div class="trek-photo">
+          <a href="pangarchulla.html"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 600' preserveAspectRatio='xMidYMid slice'%3E%3Crect width='800' height='600' fill='%2355635F'/%3E%3Cpath d='M0 430 L130 290 L240 380 L360 250 L470 360 L590 280 L800 400 V600 H0 Z' fill='%230F1B16' opacity='0.72'/%3E%3Cpath d='M0 500 L110 420 L230 470 L350 400 L480 470 L620 410 L800 480 V600 H0 Z' fill='%230F1B16' opacity='0.9'/%3E%3Ccircle cx='640' cy='120' r='34' fill='%23E8A23B' opacity='0.85'/%3E%3C/svg%3E" alt="Pangarchulla trek — photo coming soon" loading="lazy"></a>
+          <span class="tag">Difficult</span>
+        </div>
+        <div class="trek-body">
+          <h3><a href="pangarchulla.html">Pangarchulla Trek</a></h3>
+          <div class="trek-region">Uttarakhand</div>
+          <div class="trek-stats">
+            <span><b>7 days</b>Duration</span><span><b>15,069 ft</b>Max altitude</span><span><b>35 km</b>Total distance</span>
+          </div>
+          <div class="trek-footer">
+            <div class="trek-price">Price on request<span>WhatsApp us for current pricing</span></div>
+            <a href="pangarchulla.html" class="trek-link">Full details →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="view-all">
+      <a href="#contact" class="btn-secondary">See the full trek calendar</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ELEVATION PROFILE SIGNATURE ============ -->
+<section class="elevation-section">
+  <div class="wrap">
+    <div class="elevation-head">
+      <span class="eyebrow">The season ahead</span>
+      <h2>One long trail, six departures — this is where the year takes us</h2>
+    </div>
+    <div class="elevation-svg-wrap">
+      <svg viewBox="0 0 1220 260" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="elevGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E8A23B" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#E8A23B" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="elev-fill" d="M0 220 L120 200 L200 90 L280 160 L360 60 L440 150 L520 40 L600 130 L700 20 L800 140 L900 70 L1000 170 L1100 110 L1220 190 V260 H0 Z"/>
+        <path class="elev-line" d="M0 220 L120 200 L200 90 L280 160 L360 60 L440 150 L520 40 L600 130 L700 20 L800 140 L900 70 L1000 170 L1100 110 L1220 190"/>
+        <circle class="elev-dot" cx="200" cy="90" r="4"/>
+        <text class="elev-label peak" x="150" y="75">Valley of Flowers — Jul</text>
+        <circle class="elev-dot" cx="360" cy="60" r="4"/>
+        <text class="elev-label peak" x="330" y="45">Hampta Pass — Aug</text>
+        <circle class="elev-dot" cx="520" cy="40" r="4"/>
+        <text class="elev-label peak" x="470" y="25">Kedarkantha — Dec</text>
+        <circle class="elev-dot" cx="700" cy="20" r="4"/>
+        <text class="elev-label peak" x="660" y="12">Chadar Trek — Jan</text>
+        <circle class="elev-dot" cx="900" cy="70" r="4"/>
+        <text class="elev-label peak" x="850" y="55">Markha Valley — Sep</text>
+        <circle class="elev-dot" cx="1100" cy="110" r="4"/>
+        <text class="elev-label peak" x="1030" y="95">Roopkund — Jun</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESTINATIONS ============ -->
+<section class="destinations" id="destinations">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Beyond the trail</span>
+        <h2>Road trips &amp; journeys for the days you'd rather not carry a backpack</h2>
+      </div>
+      <p>Self-drive routes, homestay circuits and slow travel through places most itineraries rush past.</p>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card">
+        <svg viewBox="0 0 300 400"><rect width="300" height="400" fill="#2C5340"/><path d="M0 300 L60 220 L110 270 L160 190 L210 260 L260 210 L300 260 V400 H0 Z" fill="#16241F" opacity="0.7"/></svg>
+        <div class="dest-info"><span class="eyebrow">Himachal Pradesh</span><h4>Spiti Valley Circuit</h4></div>
+      </div>
+      <div class="dest-card">
+        <svg viewBox="0 0 300 400"><rect width="300" height="400" fill="#E8A23B"/><path d="M0 320 L70 240 L130 290 L190 220 L250 280 L300 240 V400 H0 Z" fill="#16241F" opacity="0.72"/></svg>
+        <div class="dest-info"><span class="eyebrow">Meghalaya</span><h4>Living Root Bridges Trail</h4></div>
+      </div>
+      <div class="dest-card">
+        <svg viewBox="0 0 300 400"><rect width="300" height="400" fill="#55635F"/><path d="M0 310 L50 250 L100 290 L150 230 L200 280 L250 240 L300 280 V400 H0 Z" fill="#0F1B16" opacity="0.75"/></svg>
+        <div class="dest-info"><span class="eyebrow">Ladakh</span><h4>Pangong &amp; Nubra Loop</h4></div>
+      </div>
+      <div class="dest-card">
+        <svg viewBox="0 0 300 400"><rect width="300" height="400" fill="#1F3D30"/><path d="M0 300 L60 250 L120 290 L180 240 L240 280 L300 250 V400 H0 Z" fill="#0F1B16" opacity="0.6"/></svg>
+        <div class="dest-info"><span class="eyebrow">Coorg &amp; Wayanad</span><h4>Western Ghats Coffee Trail</h4></div>
+      </div>
+      <a class="dest-card" href="jagannath-puri-yatra.html" style="text-decoration:none;">
+        <svg viewBox="0 0 300 400"><rect width="300" height="400" fill="#C9822B"/><path d="M0 320 L70 250 L130 295 L190 235 L250 285 L300 250 V400 H0 Z" fill="#16241F" opacity="0.72"/></svg>
+        <div class="dest-info"><span class="eyebrow">Odisha</span><h4>Jagannath Puri Yatra</h4></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY SAATHI ============ -->
+<section class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Why travel with us</span>
+        <h2>The things people mention after they're back home</h2>
+      </div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        <h4>Local guides, always</h4>
+        <p>Every trek lead has walked the route dozens of times and grew up in the region you're visiting.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>
+        <h4>Transparent pricing</h4>
+        <p>What you see on the trek card is what you pay — no surprise permit fees or "convenience" charges.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"/></svg>
+        <h4>Safety-first ops</h4>
+        <p>Oximeters, first-aid trained guides, satellite comms on remote routes, and a hard rule: altitude wins.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h4>A real human on WhatsApp</h4>
+        <p>Not a chatbot. Message us any time before, during or after your trip and someone who knows your route replies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="testimonials" id="testimonials">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">From the trail register</span>
+        <h2>What people wrote in the group chat afterwards</h2>
+      </div>
+      <p>A few notes from recent batches, lightly trimmed.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="quote">"Our guide knew every shepherd hut and shortcut on the way to Hampta. Never once felt like we were following a stranger with a map."</p>
+        <div class="test-who">
+          <div class="avatar">R</div>
+          <div><span class="name">Riya M.</span><span class="trip">Hampta Pass, August batch</span></div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="quote">"First time doing anything above 10,000 ft and I never felt unsafe. They turned two of us back at the right moment and it was handled with real care."</p>
+        <div class="test-who">
+          <div class="avatar">A</div>
+          <div><span class="name">Arjun K.</span><span class="trip">Kedarkantha, December batch</span></div>
+        </div>
+      </div>
+      <div class="test-card">
+        <p class="quote">"Booked the Spiti road trip on a whim after messaging on WhatsApp at 11pm. Got a full plan back by morning. That's the whole vibe of this team."</p>
+        <div class="test-who">
+          <div class="avatar">S</div>
+          <div><span class="name">Sana P.</span><span class="trip">Spiti Valley Circuit</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="insta">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Follow the trail</span>
+      <h2>More of this, daily, on Instagram</h2>
+      <a class="insta-handle" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        @adventuresaathi
+      </a>
+    </div>
+    <div class="insta-grid">
+      <a class="insta-tile" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 200"><rect width="200" height="200" fill="#2C5340"/><path d="M0 150 L50 100 L90 140 L130 80 L170 130 L200 100 V200 H0 Z" fill="#16241F" opacity="0.6"/></svg>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      </a>
+      <a class="insta-tile" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 200"><rect width="200" height="200" fill="#E8A23B"/><path d="M0 160 L60 110 L100 150 L140 90 L200 140 V200 H0 Z" fill="#16241F" opacity="0.65"/></svg>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      </a>
+      <a class="insta-tile" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 200"><rect width="200" height="200" fill="#55635F"/><path d="M0 140 L40 100 L90 130 L130 70 L170 120 L200 90 V200 H0 Z" fill="#0F1B16" opacity="0.7"/></svg>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      </a>
+      <a class="insta-tile" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 200"><rect width="200" height="200" fill="#1F3D30"/><path d="M0 150 L50 90 L100 140 L150 80 L200 130 V200 H0 Z" fill="#0F1B16" opacity="0.6"/></svg>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      </a>
+      <a class="insta-tile" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 200"><rect width="200" height="200" fill="#CE8226"/><path d="M0 155 L45 105 L95 145 L135 85 L200 135 V200 H0 Z" fill="#16241F" opacity="0.6"/></svg>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      </a>
+      <a class="insta-tile" href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">
+        <svg viewBox="0 0 200 200"><rect width="200" height="200" fill="#8A968E"/><path d="M0 145 L55 95 L105 135 L145 75 L200 125 V200 H0 Z" fill="#16241F" opacity="0.65"/></svg>
+        <div class="insta-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Tell us where you'd like to end up</h2>
+      <p>Fill in the form, or reach us directly — WhatsApp is usually fastest, especially for last-minute questions about an upcoming batch.</p>
+
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div><span class="label">Call or WhatsApp</span><span class="value">+91 88089 70991</span></div>
+      </div>
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        <div><span class="label">Email</span><span class="value">info@adventuresaathi.com</span></div>
+      </div>
+      <div class="contact-line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <div><span class="label">Instagram</span><span class="value">@adventuresaathi</span></div>
+      </div>
+    </div>
+
+    <form class="contact-form">
+      <div class="form-row">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="trip">Which trip are you interested in?</label>
+        <select id="trip" name="trip">
+          <option>Kedarkantha Trek</option>
+          <option>Hampta Pass Crossing</option>
+          <option>Roopkund Mystery Lake</option>
+          <option>Valley of Flowers</option>
+          <option>Chadar — Frozen River Trek</option>
+          <option>Markha Valley Trek</option>
+          <option>A road trip / travel package</option>
+          <option>Not sure yet — help me pick</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="message">Anything else we should know?</label>
+        <textarea id="message" name="message" placeholder="Group size, dates you're eyeing, fitness level, questions..."></textarea>
+      </div>
+      <button type="submit" class="submit-btn">Send via WhatsApp</button>
+      <p class="form-note">Opens WhatsApp with your details filled in — just hit send from there.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 24L12 10L17 18L21 12L28 24H4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            <circle cx="23" cy="7" r="2.4" fill="currentColor"/>
+          </svg>
+          Adventure Saathi
+        </div>
+        <p style="max-width:280px; font-size:0.9rem; color:#9BA69E; margin-bottom:24px;">Treks and travel across India, run by people who know the trail because they've walked it.</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://wa.me/918808970991" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4C7.24 4 3.33 7.9 3.33 12.72c0 1.55.41 3.06 1.19 4.39L3.25 21.5l4.5-1.18a9.4 9.4 0 0 0 4.3 1.09h.01c4.81 0 8.72-3.9 8.72-8.72 0-2.33-.91-4.52-2.58-6.17z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="#treks">Treks</a></li>
+          <li><a href="#destinations">Destinations</a></li>
+          <li><a href="#about">About us</a></li>
+          <li><a href="#testimonials">Trip stories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Booking terms</a></li>
+          <li><a href="#">Safety policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Reach us</h5>
+        <ul>
+          <li><a href="tel:+918808970991">+91 88089 70991</a></li>
+          <li><a href="mailto:info@adventuresaathi.com">info@adventuresaathi.com</a></li>
+          <li><a href="https://instagram.com/adventuresaathi" target="_blank" rel="noopener">@adventuresaathi</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Adventure Saathi. All rights reserved.</span>
+      <span>Made for the trail, not the algorithm.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-whatsapp" href="https://wa.me/918808970991?text=Hi%20Saathi%20Adventures%2C%20I%27d%20like%20to%20know%20more!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4C7.24 4 3.33 7.9 3.33 12.72c0 1.55.41 3.06 1.19 4.39L3.25 21.5l4.5-1.18a9.4 9.4 0 0 0 4.3 1.09h.01c4.81 0 8.72-3.9 8.72-8.72 0-2.33-.91-4.52-2.58-6.17zm-5.55 13.4h-.01a7.3 7.3 0 0 1-3.73-1.02l-.27-.16-2.67.7.71-2.6-.17-.27a7.24 7.24 0 0 1-1.12-3.87c0-4 3.26-7.26 7.27-7.26a7.23 7.23 0 0 1 7.24 7.27c0 4-3.25 7.25-7.25 7.25zm3.98-5.43c-.22-.11-1.29-.64-1.49-.71-.2-.07-.34-.11-.49.11-.14.22-.56.71-.69.85-.13.15-.25.16-.47.05-.22-.11-.92-.34-1.75-1.08-.65-.58-1.08-1.29-1.21-1.51-.13-.22-.01-.34.1-.45.1-.1.22-.25.33-.38.11-.13.15-.22.22-.36.07-.15.04-.28-.02-.39-.06-.11-.49-1.19-.68-1.63-.18-.43-.36-.37-.49-.38-.13-.01-.28-.01-.42-.01-.15 0-.39.06-.6.28-.2.22-.78.77-.78 1.86 0 1.1.8 2.16.91 2.31.11.15 1.57 2.4 3.81 3.36.53.23.95.37 1.27.47.53.17 1.02.15 1.4.09.43-.06 1.29-.53 1.47-1.03.18-.51.18-.94.13-1.03-.05-.09-.2-.15-.42-.26z"/></svg>
+</a>
+
+<script>
+  document.querySelector('.menu-toggle').addEventListener('click', function(){
+    var nav = document.querySelector('.primary-nav');
+    var isOpen = nav.style.display === 'flex';
+    nav.style.cssText = isOpen ? '' : 'display:flex; flex-direction:column; position:fixed; top:64px; left:0; right:0; background:#EEF1EA; padding:24px 32px; gap:20px; border-bottom:1px solid rgba(22,36,31,0.12); z-index:99;';
+  });
+
+  document.querySelector('.contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var whatsappNumber = '918808970991'; // Adventure Saathi WhatsApp — country code + number, no + or spaces
+
+    var name = document.getElementById('name').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var trip = document.getElementById('trip').value;
+    var message = document.getElementById('message').value.trim();
+
+    var lines = [
+      'Hi Adventure Saathi, I\'d like to enquire about a trip.',
+      '',
+      'Name: ' + name,
+      'Phone: ' + phone,
+      'Email: ' + email,
+      'Interested in: ' + trip
+    ];
+    if (message){
+      lines.push('Notes: ' + message);
+    }
+
+    var waText = encodeURIComponent(lines.join('\n'));
+    var waUrl = 'https://wa.me/' + whatsappNumber + '?text=' + waText;
+
+    var btn = this.querySelector('.submit-btn');
+    btn.textContent = 'Opening WhatsApp…';
+    btn.style.background = '#1F3D30';
+
+    window.open(waUrl, '_blank');
+
+    setTimeout(function(){
+      btn.textContent = 'Send via WhatsApp';
+      btn.style.background = '';
+    }, 2500);
+  });
+</script>
+
+</body>
+</html>
